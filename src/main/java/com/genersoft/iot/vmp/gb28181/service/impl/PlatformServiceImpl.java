@@ -242,7 +242,9 @@ public class PlatformServiceImpl implements IPlatformService {
                 log.info("[国标级联] 平台注册 {}", platform.getDeviceGBId());
                 commanderForPlatform.register(platform, eventResult -> {
                     log.info("[国标级联] {},添加向上级注册失败，请确定上级平台可用时重新保存", platform.getServerGBId());
-                }, null);
+                }, eventResult -> {
+                    log.info("[国标级联] {},添加向上级注册成功", platform.getServerGBId());
+                });
             } catch (InvalidArgumentException | ParseException | SipException e) {
                 log.error("[命令发送失败] 国标级联: {}", e.getMessage());
             }

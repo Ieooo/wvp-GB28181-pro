@@ -199,17 +199,17 @@ public class DigestServerAuthenticationHelper  {
 
         byte mdbytes[] = messageDigest.digest(A1.getBytes());
         String HA1 = toHexString(mdbytes);
-        log.debug("A1: " + A1);
-        log.debug("A2: " + A2);
+        log.info("A1: " + A1);
+        log.info("A2: " + A2);
         mdbytes = messageDigest.digest(A2.getBytes());
         String HA2 = toHexString(mdbytes);
-        log.debug("HA1: " + HA1);
-        log.debug("HA2: " + HA2);
+        log.info("HA1: " + HA1);
+        log.info("HA2: " + HA2);
         // String cnonce = authHeader.getCNonce();
-        log.debug("nonce: " + nonce);
-        log.debug("nc: " + ncStr);
-        log.debug("cnonce: " + cnonce);
-        log.debug("qop: " + qop);
+        log.info("nonce: " + nonce);
+        log.info("nc: " + ncStr);
+        log.info("cnonce: " + cnonce);
+        log.info("qop: " + qop);
         String KD = HA1 + ":" + nonce;
 
         if (qop != null && qop.equalsIgnoreCase("auth") ) {
@@ -222,12 +222,12 @@ public class DigestServerAuthenticationHelper  {
             KD += ":" + qop;
         }
         KD += ":" + HA2;
-        log.debug("KD: " + KD);
+        log.info("KD: " + KD);
         mdbytes = messageDigest.digest(KD.getBytes());
         String mdString = toHexString(mdbytes);
-        log.debug("mdString: " + mdString);
+        log.info("mdString: " + mdString);
         String response = authHeader.getResponse();
-        log.debug("response: " + response);
+        log.info("response: " + response);
         return mdString.equals(response);
 
     }

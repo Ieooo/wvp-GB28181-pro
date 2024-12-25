@@ -4,6 +4,8 @@ ARG gitUrl="https://gitee.com/pan648540858"
 ARG zlmGitUrl="https://gitee.com/xia-chu/ZLMediaKit"
 
 RUN export DEBIAN_FRONTEND=noninteractive &&\
+        sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list &&\
+        sed -i 's/security.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list &&\
         apt-get update && \
         apt-get install -y --no-install-recommends openjdk-11-jre git maven nodejs npm build-essential \
         cmake ca-certificates openssl ffmpeg &&\
@@ -70,6 +72,8 @@ EXPOSE 30000-30500/udp
 ENV LC_ALL zh_CN.UTF-8
 
 RUN export DEBIAN_FRONTEND=noninteractive &&\
+        sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list &&\
+        sed -i 's/security.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list &&\
         apt-get update && \
         apt-get install -y --no-install-recommends openjdk-11-jre ca-certificates ffmpeg language-pack-zh-hans && \
         apt-get autoremove -y && \
